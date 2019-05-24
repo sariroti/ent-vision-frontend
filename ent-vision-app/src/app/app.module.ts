@@ -8,18 +8,30 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import { HttpClientModule } from '@angular/common/http';
+import { OrdersComponent } from './orders/orders.component';
+import { Routes, RouterModule } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path : '', component: ProductsComponent},
+  { path: 'orders', component: OrdersComponent },
+];
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent
+    ProductsComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(
+      appRoutes,
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]

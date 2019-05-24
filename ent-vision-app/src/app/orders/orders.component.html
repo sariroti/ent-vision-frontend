@@ -1,0 +1,101 @@
+<div class="col-md-12">
+    <div class="col-md-12">
+        <h1>Order</h1>
+    </div>
+  
+    <div class="col-md-12  d-flex justify-content-center">
+        <form class="col-md-6" ngForm #myform="ngForm" (ngSubmit)="submit(myform,$event)">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Required Date</label>
+              <div class="input-group">
+                  <input class="form-control" placeholder="mm-dd-yyyy"
+                         name="RequiredDateObject" [(ngModel)]="order.RequiredDateObject" ngbDatepicker #d="ngbDatepicker">
+                  <div class="input-group-append">
+                    <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Ship Name</label>
+              <input type="text" [(ngModel)]="order.ShipName" class="form-control" id="shipName" name="shipName" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Ship Address</label>
+                <input type="text" [(ngModel)]="order.ShipAddress" class="form-control" id="shipAddress" name="shipAddress" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Ship City</label>
+                <input type="text" [(ngModel)]="order.ShipCity" class="form-control" id="shipCity" name="shipCity" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Ship Postal Code</label>
+                <input type="text" [(ngModel)]="order.ShipPostalCode" class="form-control" id="shipPostalCode" name="shipPostalCode" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Ship Country</label>
+                <input type="text" [(ngModel)]="order.ShipPostalCountry" class="form-control" id="shipCountry" name="shipCountry" placeholder="">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Customer ID</label>
+                <input type="text" [(ngModel)]="order.CustomerID" class="form-control" id="customerID" name="CustomerID" placeholder="">
+            </div>
+            <div class="form-group">
+              <div class="col-md-12 row">
+                <div class="col-md-6  row">
+                    <div class="row">
+                        <div class="col-md-3">
+                          <div ngbDropdown class="d-inline-block">
+                            <button type="button" class="btn btn-outline-primary" id="products" ngbDropdownToggle>{{selectedProductName}}</button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                              <button type="button" *ngFor="let product of products; index as i" ngbDropdownItem (click)="onChangeProduct(i)">{{product.PartNumber + "-" + product.ProductName}}</button>
+                             
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6  row">
+                    <input type="text" [(ngModel)]="order.Quantity" class="form-control" id="customerID" name="CustomerID" placeholder="">
+                    <button class="form-control col-md-6" type="button" (click)="addProduct(); $event.preventDefault()">Add Product</button>
+                </div>
+              </div>
+              <br/>
+              <div class="col-md-12">
+                  <table class="table table-striped">
+                      <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Part Number</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Quantity per Unit</th>
+                        <th scope="col">Unit Price</th>
+                        <th scope="col">Units in Stock</th>
+                        <th scope="col">Units in Order</th>
+                        <th scope="col">Reorder Level</th>
+                        <th scope="col">Discontinued</th>
+                        <th scope="col">Category</th>
+                      </tr>
+                      </thead>
+                      <tbody>
+                      <tr *ngFor="let product of order.OrderDetails; index as i">
+                        <th scope="row">{{ i + 1 }}</th>
+                        <td>{{ product.PartNumber}}</td>
+                        <td>{{ product.ProductName }}</td>
+                        <td>{{ product.QuantityPerUnit }}</td>
+                        <td>{{ product.UnitPrice }}</td>
+                        <td>{{ product.UnitsInStock }}</td>
+                        <td>{{ product.UnitsOnOrder }}</td>
+                        <td>{{ product.ReorderLevel }}</td>
+                        <td>{{ product.Discontinued && 'Yes' || 'No' }}</td>
+                        <td>{{ product.CategoryName }}</td>
+                      </tr>
+                      </tbody>
+                      </table>
+              </div>
+            </div>
+             
+            <button type="submit" class="btn btn-primary" >Submit</button>
+          </form>
+    </div>
+    
+</div>
