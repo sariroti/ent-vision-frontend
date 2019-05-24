@@ -1,0 +1,49 @@
+<h1>Product</h1>
+<form>
+  <div class="form-group form-inline">
+      <div class="row">
+          <div class="col">
+            <div ngbDropdown class="d-inline-block">
+              <button class="btn btn-outline-primary" id="fieldFilter" type="button" ngbDropdownToggle>{{selectedFieldFilterDisplay}}</button>
+              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <button ngbDropdownItem type="button" (click)="onChangeFieldFilter('categoryName')">Category name</button>
+                <button ngbDropdownItem type="button" (click)="onChangeFieldFilter('partNumber')">Part Number</button>
+              </div>
+            </div>
+          </div>
+        </div>
+  
+      <input class="form-control ml-2" type="text" name="fieldFilterValue" [(ngModel)]="fieldFilterValue" />
+      <button class="form-control ml-2" type="button" (click)="search()">Search</button>
+  </div>
+</form>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Part Number</th>
+    <th scope="col">Product Name</th>
+    <th scope="col">Quantity per Unit</th>
+    <th scope="col">Unit Price</th>
+    <th scope="col">Units in Stock</th>
+    <th scope="col">Units in Order</th>
+    <th scope="col">Reorder Level</th>
+    <th scope="col">Discontinued</th>
+    <th scope="col">Category</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let product of products; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{ product.PartNumber}}</td>
+    <td>{{ product.ProductName }}</td>
+    <td>{{ product.QuantityPerUnit }}</td>
+    <td>{{ product.UnitPrice }}</td>
+    <td>{{ product.UnitsInStock }}</td>
+    <td>{{ product.UnitsOnOrder }}</td>
+    <td>{{ product.ReorderLevel }}</td>
+    <td>{{ product.Discontinued && 'Yes' || 'No' }}</td>
+    <td>{{ product.CategoryName }}</td>
+  </tr>
+  </tbody>
+</table>
