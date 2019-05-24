@@ -9,7 +9,7 @@
               <label for="exampleInputEmail1">Required Date</label>
               <div class="input-group">
                   <input class="form-control" placeholder="mm-dd-yyyy"
-                         name="RequiredDateObject" [(ngModel)]="order.RequiredDateObject" ngbDatepicker #d="ngbDatepicker">
+                         name="RequiredDateObject" [(ngModel)]="order.RequiredDateObject" ngbDatepicker #d="ngbDatepicker" required>
                   <div class="input-group-append">
                     <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
                   </div>

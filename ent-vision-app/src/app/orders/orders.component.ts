@@ -18,7 +18,10 @@ export class OrdersComponent implements OnInit {
   order: Order;
   orderSubmit: Order;
   orderDetails: OrderDetails[];
-  constructor(private productService: ProductService, private orderService: OrderService, private router: Router) { }
+  
+  constructor(private productService: ProductService,
+              private orderService: OrderService,
+              private router: Router) { }
 
   ngOnInit() {
     this.selectedProductName = '';
@@ -28,6 +31,7 @@ export class OrdersComponent implements OnInit {
     this.order.CustomerID = '1';
     this.order.OrderDetails = [];
     this.orderDetails = [];
+
     this.productService.getProduct()
       .subscribe((data: any) => {
         this.products = data;
@@ -64,10 +68,11 @@ export class OrdersComponent implements OnInit {
   }
     this.orderService.createOrder(this.orderSubmit)
       .subscribe((data: any) => {
-        console.log(data);
         if (data === 'Success') {
             alert('Order added!');
             this.router.navigate(['/']);
+        } else {
+          alert(data);
         }
       });
   }
