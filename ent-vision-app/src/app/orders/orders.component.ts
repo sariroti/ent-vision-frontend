@@ -18,7 +18,7 @@ export class OrdersComponent implements OnInit {
   order: Order;
   orderSubmit: Order;
   orderDetails: OrderDetails[];
-  
+
   constructor(private productService: ProductService,
               private orderService: OrderService,
               private router: Router) { }
